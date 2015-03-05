@@ -1,5 +1,6 @@
 <h1>Listing tasks</h1>
 
+<%= link_to 'New Task', new_task_path, class: 'button' %>
 <table>
   <thead>
     <tr>
@@ -23,8 +24,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
-<%= link_to 'Users', {controller: "users", action: "index"}  %>
