@@ -11,17 +11,34 @@ class TasksControllerTest < ActionController::TestCase
     assert_not_nil assigns(:tasks)
   end
 
-  test "should get new" do
+  test "deberia ser redirigido a la pagina de login si no esta autenticado" do
+    get :new
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+  
+  test "should get new when user is logged in" do
+    sign_in users(:one)
     get :new
     assert_response :success
   end
+  
+  test "should not create a task without login" do
+      assert_no_difference('Task.count') do
+          post :create, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
+      end
 
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+  
   test "should create task" do
+    sign_in users(:one)
     assert_difference('Task.count') do
-      post :create, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
-    end
-
-    assert_redirected_to task_path(assigns(:task))
+    post :create, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
+  end
+ 
+     assert_redirected_to task_path(assigns(:task))
   end
 
   test "should show task" do

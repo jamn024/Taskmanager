@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nombre: MyString
-  apellido: MyString
-  correo: MyString
+  nombre: Jorge
+  apellido: Madero
+  email: jamadero@uninorte.edu.co
 
 two:
-  nombre: MyString
-  apellido: MyString
-  correo: MyString
+  nombre: Jhonnathan
+  apellido: Gutierrez
+  email: Ejhony@uninorte.edu.co

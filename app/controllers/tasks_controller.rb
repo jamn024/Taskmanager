@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :get_users
-
+  before_action :authenticate_user!
+  
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.order("created_at DESC")
+    @tasks = Task.all.order("created_at DESC").current_user.tasks
   end
 
   # GET /tasks/1
@@ -15,7 +16,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new({user_id: current_user.id})
   end
 
   # GET /tasks/1/edit
