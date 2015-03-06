@@ -6,6 +6,8 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
+    sign_in users(:one)
+    
     get :index
     assert_response :success
     assert_not_nil assigns(:tasks)
@@ -34,29 +36,38 @@ class TasksControllerTest < ActionController::TestCase
   
   test "should create task" do
     sign_in users(:one)
+    
     assert_difference('Task.count') do
-    post :create, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
-  end
+      post :create, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
+    end
  
      assert_redirected_to task_path(assigns(:task))
   end
 
   test "should show task" do
+    sign_in users(:one)
+    
     get :show, id: @task
     assert_response :success
   end
 
   test "should get edit" do
+    sign_in users(:one)
+    
     get :edit, id: @task
     assert_response :success
   end
 
   test "should update task" do
+    sign_in users(:one)
+    
     patch :update, id: @task, task: { state: @task.state, title: @task.title, user_id: @task.user_id }
     assert_redirected_to task_path(assigns(:task))
   end
 
   test "should destroy task" do
+    sign_in users(:one)
+    
     assert_difference('Task.count', -1) do
       delete :destroy, id: @task
     end

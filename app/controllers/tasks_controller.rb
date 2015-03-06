@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.order("created_at DESC").current_user.tasks
+    @tasks = current_user.tasks.order("created_at DESC")
   end
 
   # GET /tasks/1
