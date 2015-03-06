@@ -25,14 +25,6 @@
       </ul>
     
       <section class="top-bar-section">
-        <ul class="left">
-          <li>
-            <%= link_to 'Tasks', tasks_path %>
-          </li>
-          <li>
-            <%= link_to 'Users', users_path %>
-          </li>
-        </ul>
         
         <ul class="right">
           <% if user_signed_in? %>
@@ -54,14 +46,24 @@
       </section>
     </nav>
     
-    <div data-alert class="alert-box warning radius">
-      <%= notice %>
-      <a href="#" class="close">&times;</a>
-    </div>
-    <div data-alert class="alert-box alert radius">
-      <%= alert %>
-      <a href="#" class="close">&times;</a>
-    </div>
+    <% if flash[:notice] %>
+      <div data-alert class="alert-box info radius">
+        <%= flash[:notice] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div data-alert class="alert-box warning radius">
+        <%= flash[:alert] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+    <% if flash[:error] %>
+      <div data-alert class="alert-box alert radius">
+        <%= flash[:error] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
     
     <div class="row">
       <div class="columns large-12">
